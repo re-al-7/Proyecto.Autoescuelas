@@ -1,0 +1,359 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="Autoescuelas.Web.Main" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Ivan Cruz">
+
+    <title>Autoescuelas</title>
+
+    <!-- Bootstrap Core CSS -->    
+    <link href="<%= ResolveClientUrl("~/vendor/bootstrap/css/bootstrap.min.css") %>" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="<%= ResolveClientUrl("~/vendor/metisMenu/metisMenu.min.css") %>" rel="stylesheet">
+
+    <!-- Custom CSS -->    
+    <link href="<%= ResolveClientUrl("~/sb-admin/css/sb-admin-2.css") %>" rel="stylesheet">
+
+    <!-- Custom Fonts -->    
+    <link href="<%= ResolveClientUrl("~/vendor/font-awesome/css/font-awesome.min.css") %>" rel="stylesheet">
+    
+    <!-- Custom Fonts -->    
+    <link href="<%= ResolveClientUrl("~/vendor/bootstrap-dialog.css") %>" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <style>
+
+        @media only screen and (max-width: 600px) {
+            #page-wrapper {
+                padding-top: 100px !important;
+            }
+        }
+
+        @media only screen and (min-width: 600px) and (max-width: 760px) {
+            #page-wrapper {
+                padding-top: 80px !important;
+            }
+        }
+
+        @media only screen and (min-width: 760px)  {
+            #page-wrapper {
+                padding-top: 10px !important;
+            }
+        }
+
+        .dialog-vertical-center .modal-dialog {
+            margin-top: 20%;
+        }
+        .modal-header-success {
+            color: #fff;
+            padding: 9px 15px;
+            border-bottom: 1px solid #eee;
+            background-color: #5cb85c;
+            -webkit-border-top-left-radius: 5px;
+            -webkit-border-top-right-radius: 5px;
+            -moz-border-radius-topleft: 5px;
+            -moz-border-radius-topright: 5px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .modal-header-warning {
+            color: #fff;
+            padding: 9px 15px;
+            border-bottom: 1px solid #eee;
+            background-color: #f0ad4e;
+            -webkit-border-top-left-radius: 5px;
+            -webkit-border-top-right-radius: 5px;
+            -moz-border-radius-topleft: 5px;
+            -moz-border-radius-topright: 5px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .modal-header-danger {
+            color: #fff;
+            padding: 9px 15px;
+            border-bottom: 1px solid #eee;
+            background-color: #d9534f;
+            -webkit-border-top-left-radius: 5px;
+            -webkit-border-top-right-radius: 5px;
+            -moz-border-radius-topleft: 5px;
+            -moz-border-radius-topright: 5px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .modal-header-info {
+            color: #fff;
+            padding: 9px 15px;
+            border-bottom: 1px solid #eee;
+            background-color: #5bc0de;
+            -webkit-border-top-left-radius: 5px;
+            -webkit-border-top-right-radius: 5px;
+            -moz-border-radius-topleft: 5px;
+            -moz-border-radius-topright: 5px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .modal-header-primary {
+            color: #fff;
+            padding: 9px 15px;
+            border-bottom: 1px solid #eee;
+            background-color: #428bca;
+            -webkit-border-top-left-radius: 5px;
+            -webkit-border-top-right-radius: 5px;
+            -moz-border-radius-topleft: 5px;
+            -moz-border-radius-topright: 5px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .parsley-required {
+            color: #f00;
+            font-weight: 400;
+            font-size: 11px;            
+        }
+
+        .parsley-min {
+            color: #f00;
+            font-weight: 400;
+            font-size: 11px;            
+        }
+
+        input[disabled] {
+            background-color: #FFFFBB !important;
+            color: #303030 !important;
+        }
+        input[readonly] {
+            background-color: #FFFFBB !important;
+            color: #303030 !important;
+            font-style: italic;
+        }
+
+        select[disabled] {
+            background-color: #FFFFBB !important;
+            color: #303030 !important;
+            font-style: italic;
+        }
+
+        #side-menu li a.active {
+            background-color: #F0891E !important;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .modal-dialog-full {
+            width: 90%;
+            padding: 0;
+        }
+    </style>
+
+    <asp:ContentPlaceHolder ID="StyleSection" runat="server" />
+
+</head>
+<body style="padding-top: 50px" onkeydown = "return (event.keyCode!=13)">
+    <form id="form1" name="aspnetForm" runat="server"
+        enctype="multipart/form-data" method="post" role="form">
+        <div id="wrapper">
+            <!-- Navigation -->
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0;">
+                <%--<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: #00bfff">--%>
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <a class="navbar-brand rq_menu_hor" href="<%= ResolveClientUrl("~/Template/Dashboard.aspx?mod=") %>">
+                        <table>
+                            <tr>
+                                <td>
+                                    AutoEscuelas
+                                </td>                                
+                            </tr>
+                        </table>
+                    </a>
+                </div>
+                <!-- /.navbar-header -->
+
+                <ul class="nav navbar-top-links navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user fa-fw"></i><i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-messages">
+                            <li>
+                                <a href="#">
+                                    <asp:Label ID="lblUsuario" runat="server" Text="Bienvenido Usuario"></asp:Label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <asp:Label ID="lblRolActivo" runat="server" Text="Rol Activo"></asp:Label>
+                                </a>
+                            </li>
+                            
+
+                            <li class="divider"></li>
+                            <li>
+                                <asp:LinkButton ID="lnkCerrar" runat="server" OnClick="lnkCerrar_Click">
+                                    <i class="fa fa-sign-out fa-fw"></i> Cerrar sesión
+                                </asp:LinkButton>
+                            </li>
+                        </ul>
+                        <!-- /.dropdown-user -->
+                    </li>
+                    <!-- /.dropdown -->
+                </ul>
+                <!-- /.navbar-top-links -->
+
+                <div class="navbar-header" align="center" style="padding-top: 8px; padding-bottom: 8px"
+                    runat="server" id="divModulo">
+                </div>
+
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse" runat="server" id="divMenu">
+                    </div>
+                    <!-- /.sidebar-collapse -->
+                </div>
+                <!-- /.navbar-static-side -->
+            </nav>
+
+            <div id="page-wrapper" style="padding-top: 20px">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <asp:Panel ID="pnlMsg" runat="server" Visible="False"
+                            class="alert alert-success alert-dismissable"
+                            CssClass="alert alert-success alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <asp:Label ID="lblmsg" runat="server" Text="Label"></asp:Label>
+                        </asp:Panel>
+                        <asp:Panel ID="pnlError" runat="server" Visible="False"
+                            class="alert alert-danger alert-dismissable"
+                            CssClass="alert alert-danger alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <asp:Label ID="lblError" runat="server" Text="Label"></asp:Label>
+                        </asp:Panel>
+                    </div>
+                </div>
+                <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
+                <asp:ContentPlaceHolder ID="ContentSection" runat="server">
+                </asp:ContentPlaceHolder>
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModalError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <asp:UpdatePanel ID="updModale" runat="server" RenderMode="Block">
+                            <ContentTemplate>
+                                <div class="modal-content">
+                                    <div runat="server" ID="divError" class="modal-header modal-header-danger">
+                                        <h4 class="modal-title" id="myModalLabel">
+                                            <asp:Label ID="lblErrorTitulo" runat="server" Text="Alerta!"></asp:Label>
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <asp:Label ID="lblErrorMensaje" runat="server" Text="Label"></asp:Label>
+                                        <hr />
+                                        <div runat="server" ID="divErrorDetalle">
+                                            <div class="panel-group" id="accordion">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        <h4 class="panel-title">
+                                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseException">Ver detalles</a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapseException" class="panel-collapse collapse">
+                                                        <div class="panel-body">
+                                                            <asp:Label ID="lblErrorDescripcion" runat="server" Text=""></asp:Label>                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <asp:Button ID="btnCerrar" runat="server" Text="Cerrar"
+                                            CssClass="btn btn-default" class="btn btn-default" data-dismiss="modal" />
+                                        <asp:Button ID="btnRecargar" runat="server" Text="Recargar Página"
+                                            CssClass="btn btn-primary" Class="btn btn-primary"
+                                            UseSubmitBehavior="false" data-dismiss="modal"
+                                            OnClick="btnRecargar_Click" Visible="False" />
+                                    </div>
+                                </div>
+                                <!-- /.modal-content -->
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+            </div>
+        </div>
+    </form>
+    <!-- /container -->
+    
+    <!-- jQuery -->
+    <script src="<%=ResolveClientUrl("~/vendor/jquery/jquery.min.js")%>"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<%=ResolveClientUrl("~/vendor/bootstrap/js/bootstrap.min.js")%>"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="<%=ResolveClientUrl("~/vendor/metisMenu/metisMenu.min.js")%>"></script>
+
+    <!-- Custom Theme JavaScript -->    
+    <script src="<%=ResolveClientUrl("~/sb-admin/js/sb-admin-2.js")%>"></script>
+    
+    <script src="<%=ResolveClientUrl("~/vendor/bootstrap-dialog.js")%>"></script>
+
+    <script src="<%=ResolveClientUrl("~/vendor/parsley/parsley.min.js")%>"></script>
+    <script src="<%=ResolveClientUrl("~/vendor/parsley/i18n/es.js")%>"></script>
+
+    
+    <asp:ContentPlaceHolder ID="ScriptSection" runat="server" />
+    
+<script>
+
+    $('.tooltip-demo').tooltip({
+        selector: "[data-toggle=tooltip]",
+        container: "body"
+    });
+
+    $('#aspnetForm').parsley();
+    
+        
+    $('.modal').on('hidden.bs.modal', function (e) {
+        if ($('.modal').hasClass('in')) {
+            $('body').addClass('modal-open');
+        }
+    });
+
+    $(document).ready(function() {
+        $("#<%=pnlMsg.ClientID%>").fadeTo(2000, 500).slideUp(500,
+            function () {                
+                $("#<%=pnlMsg.ClientID%>").slideUp(500);
+            });
+    });
+        
+</script>
+    
+    <%--</form>--%>
+</body>
+</html>
